@@ -15,16 +15,16 @@ export class MenuComponent implements OnDestroy {
       'person',
       sanitizer.bypassSecurityTrustResourceUrl('assets/outline-person-24px.svg'));
     iconRegistry.addSvgIcon(
-      'home',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/outline-home-24px.svg'));
+      'calender',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/outline-event-24px.svg'));
     iconRegistry.addSvgIcon(
       'contacts',
       sanitizer.bypassSecurityTrustResourceUrl('assets/outline-contacts-24px.svg'));
     iconRegistry.addSvgIcon(
-      'notes',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/outline-notes-24px.svg'));
+      'login',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-exit_to_app-24px (1).svg'));
     iconRegistry.addSvgIcon(
-      'tasks',
+      'logout',
       sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-timer-24px.svg'));
     iconRegistry.addSvgIcon(
       'menu-burger',
