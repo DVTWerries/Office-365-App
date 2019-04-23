@@ -6,15 +6,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { TokenInterceptor } from './interceptors/token-interceptor';
+import { MenuComponent } from './components/menu/menu.component';
+import { MaterialModule } from './material-module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MaterialModule,
     OAuthModule.forRoot()
   ],
   providers: [{
