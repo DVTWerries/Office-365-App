@@ -1,5 +1,7 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { MatIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +10,25 @@ import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 })
 export class MenuComponent implements OnDestroy {
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    iconRegistry.addSvgIcon(
+      'person',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/outline-person-24px.svg'));
+    iconRegistry.addSvgIcon(
+      'home',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/outline-home-24px.svg'));
+    iconRegistry.addSvgIcon(
+      'contacts',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/outline-contacts-24px.svg'));
+    iconRegistry.addSvgIcon(
+      'notes',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/outline-notes-24px.svg'));
+    iconRegistry.addSvgIcon(
+      'tasks',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-timer-24px.svg'));
+    iconRegistry.addSvgIcon(
+      'menu-burger',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-menu-24px.svg'));
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this.mobileQueryListener);
@@ -18,16 +38,7 @@ export class MenuComponent implements OnDestroy {
 
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
-  fillerContent = Array.from({length: 50}, () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
-
   private mobileQueryListener: () => void;
-
-  shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this.mobileQueryListener);
