@@ -6,8 +6,10 @@
       </button>
       <h1 class="example-app-name">Responsive App</h1>
       <span class="example-spacer"></span>
-      <mat-icon class="example-icon" svgIcon="person" aria-hidden="false" aria-label="profile SVG icon"></mat-icon>
-      <span>Profile</span>
+      <a mat-list-item routerLink="/login" id="profile-style">
+        <mat-icon svgIcon="person" aria-hidden="false" aria-label="profile SVG icon"></mat-icon>
+        <span>Profile</span>
+      </a>
     </mat-toolbar-row>
   </mat-toolbar>
 
@@ -29,6 +31,10 @@
         </a>
       </mat-nav-list>
     </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
   </mat-sidenav-container>
 </div>
 
