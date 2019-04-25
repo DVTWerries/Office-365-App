@@ -9,11 +9,13 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { TokenInterceptor } from './interceptors/token-interceptor';
 import { MenuComponent } from './components/menu/menu.component';
 import { MaterialModule } from './material-module';
+import { CalenderEventsComponent } from './components/calender-events/calender-events.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
+    CalenderEventsComponent,
   ],
   imports: [
     BrowserModule,
