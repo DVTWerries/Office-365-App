@@ -10,12 +10,14 @@ import { TokenInterceptor } from './interceptors/token-interceptor';
 import { MenuComponent } from './components/menu/menu.component';
 import { MaterialModule } from './material-module';
 import { CalenderEventsComponent } from './components/calender-events/calender-events.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     CalenderEventsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,6 +26,9 @@ import { CalenderEventsComponent } from './components/calender-events/calender-e
     HttpClientModule,
     MaterialModule,
     OAuthModule.forRoot()
+  ],
+  entryComponents: [
+    LoginComponent
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

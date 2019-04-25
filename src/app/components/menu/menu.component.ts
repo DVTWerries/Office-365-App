@@ -2,6 +2,8 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +12,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class MenuComponent implements OnDestroy {
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(private oauthService: OAuthService,
+              private authService: AuthService,
+              iconRegistry: MatIconRegistry,
+              sanitizer: DomSanitizer,
+              changeDetectorRef: ChangeDetectorRef,
+              media: MediaMatcher) {
     iconRegistry.addSvgIcon(
       'person',
       sanitizer.bypassSecurityTrustResourceUrl('assets/outline-person-24px.svg'));
@@ -42,6 +49,11 @@ export class MenuComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this.mobileQueryListener);
+  }
+
+  public logOut() {
+    this.oauthService.logOut();
+    this.authService.setLoggedIn(false);
   }
 
 }
