@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CalenderEventsService } from 'src/app/services/calender-events.service';
+import { Event } from 'src/app/models/events';
 
 @Component({
   selector: 'app-calender-events',
@@ -9,7 +11,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class CalenderEventsComponent implements OnInit {
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  calendarEvents: Event[];
+
+  constructor(private calendarEventsApi: CalenderEventsService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
       'event',
       sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-event-24px.svg'));
@@ -25,6 +29,9 @@ export class CalenderEventsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.calendarEventsApi.getCalenderEvents().subscribe(calendarEvents => {
+      this.calendarEvents = calendarEvents;
+    });
   }
 
 }
