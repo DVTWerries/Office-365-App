@@ -22,20 +22,12 @@ export class AuthGuard implements CanActivate {
       this.openDialog();
       return true;
     }
-    // this.authService.currentLoginState.subscribe(isLoggedIn => {
-    //   if (isLoggedIn) {
-    //     this.router.navigate(['/calender-event']);
-    //     return false;
-    //   } else {
-    //     console.log(isLoggedIn);
-    //     return true;
-    //   }
-    // });
   }
 
   openDialog(): void {
     this.dialog.open(LoginComponent, {
-      width: '250px',
+      width: '400px',
+      disableClose: true,
     });
   }
 }
