@@ -1,0 +1,40 @@
+<div class="events-holder" *ngIf="calendarEvents">
+    <mat-grid-list class="grid-list" cols="1" rowHeight="6:1" *ngFor="let event of calendarEvents">
+        <mat-grid-tile id="whatever" class="grid-tile">
+            <div class="tile-data-container">
+                <div class="event-icon-holder">
+                    <mat-icon svgIcon="event" aria-hidden="false" aria-label="Example thumbs up SVG icon">
+                    </mat-icon>
+                </div>
+                <div class="event-location">
+                    <p>
+                        <span>{{event.subject}}</span>
+                    </p>
+                    <p>
+                        <mat-icon svgIcon="location" aria-hidden="false" aria-label="Example thumbs up SVG icon">
+                        </mat-icon><span>{{event.location.uniqueId}}</span>
+                    </p>
+                </div>
+                <div class="events-dates">
+                    <p>
+                        <mat-icon svgIcon="start-date" aria-hidden="false" aria-label="Example thumbs up SVG icon">
+                        </mat-icon>
+                        <span>{{event.start.dateTime | date: 'medium'}}</span>
+                    </p>
+                    <p>
+                        <mat-icon svgIcon="start-date" aria-hidden="false" aria-label="Example thumbs up SVG icon">
+                        </mat-icon>
+                        <span> {{event.end.dateTime | date: 'medium'}}</span>
+                    </p>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+
+<div *ngIf="calendarEvents && calendarEvents.length <= 0">
+    <div class="notification is-warning">
+        {{"You have no scheduled events yet."|translate}}
+    </div>
+</div>
