@@ -1,9 +1,2 @@
-<button *ngIf="!name;else content" class="btn btn-default" (click)="login()">Login</button>
+<app-menu *ngIf="name"></app-menu>
 
-<ng-template #content>
-     <h1>Hallo {{ name }}.</h1>
-
-    <button class="btn btn-default" (click)="logOut()">Logout</button>
-</ng-template>
-
-<app-menu></app-menu>

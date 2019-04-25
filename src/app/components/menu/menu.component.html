@@ -17,15 +17,15 @@
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56">
       <mat-nav-list>
-        <a mat-list-item routerLink="['/calender-events']">
+        <a mat-list-item routerLink="/calender-event">
           <mat-icon svgIcon="calender" aria-hidden="false" aria-label="calender-events SVG icon"></mat-icon>
           <span>Calender-Event</span>
         </a>
-        <a mat-list-item routerLink="['/personal/contacts']">
+        <a mat-list-item routerLink="/personal/contacts">
           <mat-icon svgIcon="contacts" aria-hidden="false" aria-label="contacts SVG icon"></mat-icon>
           <span>Personal Contacts</span>
         </a>
-        <a mat-list-item routerLink="/login">
+        <a mat-list-item routerLink="/login" (click)="logOut()">
           <mat-icon svgIcon="logout" aria-hidden="false" aria-label="logout SVG icon"></mat-icon>
           <span>Logout</span>
         </a>
