@@ -1,4 +1,6 @@
-<div class="events-holder" *ngIf="calendarEvents">
+<mat-spinner *ngIf="spinner" class="spinner"></mat-spinner>
+
+<div class="events-holder" *ngIf="calendarEvents && !spinner">
     <mat-grid-list class="grid-list" cols="1" rowHeight="6:1" *ngFor="let event of calendarEvents">
         <mat-grid-tile-header class="mat-grid-tile-heade-footer">
             <mat-icon svgIcon="event" aria-hidden="false" aria-label="Example thumbs up SVG icon">

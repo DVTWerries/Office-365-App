@@ -1,0 +1,14 @@
+<mat-card *ngIf="user" class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{user.displayName}}</mat-card-title>
+      <mat-card-subtitle>{{user.userPrincipalName}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        This is {{user.givenNmae}}> A boi will be displayed when we have access to the user bio. Information like the company
+        the given person works for will display here and some other known properties of the user.
+      </p>
+    </mat-card-content>
+  </mat-card>

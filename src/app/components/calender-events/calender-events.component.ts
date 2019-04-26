@@ -12,6 +12,7 @@ import { Event } from 'src/app/models/events';
 export class CalenderEventsComponent implements OnInit {
 
   calendarEvents: Event[];
+  spinner: boolean;
 
   constructor(private calendarEventsApi: CalenderEventsService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
@@ -29,9 +30,13 @@ export class CalenderEventsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.calendarEventsApi.getCalenderEvents().subscribe(calendarEvents => {
+    this.spinner = true;
+    this.calendarEventsApi.getCalenderEvents().subscribe(
+      calendarEvents => {
       this.calendarEvents = calendarEvents;
-    });
+    },
+    error => this.spinner = true,
+    () => this.spinner = false);
   }
 
 }

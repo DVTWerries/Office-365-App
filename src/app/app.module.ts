@@ -11,7 +11,8 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MaterialModule } from './material-module';
 import { CalenderEventsComponent } from './components/calender-events/calender-events.component';
 import { LoginComponent } from './components/login/login.component';
-import { UserComponent } from './components/user/user.component';
+import { UsersComponent } from './components/users/users.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { UserComponent } from './components/user/user.component';
     MenuComponent,
     CalenderEventsComponent,
     LoginComponent,
-    UserComponent,
+    UsersComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule,

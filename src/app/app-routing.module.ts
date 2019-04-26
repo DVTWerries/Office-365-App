@@ -3,15 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { CalenderEventsComponent } from './components/calender-events/calender-events.component';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './auth/auth.guard';
-import { UserComponent } from './components/user/user.component';
+import { UsersComponent } from './components/users/users.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: AppComponent, canActivate: [AuthGuard]},
-  { path: 'calender-event', component: CalenderEventsComponent},
-  // { path: 'dashboard', component: CalenderEventsComponent},
-  { path: 'organisation/contacts', component: UserComponent},
-  // { path: 'profile', component: NotesComponent}
+  { path: 'login', component: AppComponent, canActivate: [AuthGuard] },
+  { path: 'calender-event', component: CalenderEventsComponent },
+  { path: 'organisation/contacts', component: UsersComponent },
+  { path: 'organisation/contacts/userDetails', component: UserDetailsComponent },
 ];
 
 @NgModule({
