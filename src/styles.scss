@@ -4,3 +4,7 @@
 .mat-grid-tile .mat-figure{
     position: relative !important;
 }
+
+.td.mat-cell:last-of-type{
+    padding-right: 0 !important;
+   }

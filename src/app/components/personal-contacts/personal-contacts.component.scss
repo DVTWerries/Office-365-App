@@ -9,4 +9,9 @@ table {
 
 th.mat-sort-header-sorted {
     color: black;
-  }
+}
+
+th.mat-header-cell {
+    text-align: left;
+    max-width: 200px;
+}
