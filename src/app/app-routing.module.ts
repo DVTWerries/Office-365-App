@@ -3,14 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { CalenderEventsComponent } from './components/calender-events/calender-events.component';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './auth/auth.guard';
-import { PersonalContactsComponent } from './components/personal-contacts/personal-contacts.component';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: AppComponent, canActivate: [AuthGuard]},
   { path: 'calender-event', component: CalenderEventsComponent},
   // { path: 'dashboard', component: CalenderEventsComponent},
-  { path: 'personal/contacts', component: PersonalContactsComponent},
+  { path: 'organisation/contacts', component: UserComponent},
   // { path: 'profile', component: NotesComponent}
 ];
 
