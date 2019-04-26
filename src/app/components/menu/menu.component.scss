@@ -33,4 +33,11 @@
     color: white;
     text-decoration: none;
   }
+
+  @media only screen and (max-width: 500px) {
+    #profile-style{
+      display: none;
+    }
+
+  }
   

@@ -25,4 +25,10 @@ export class UserService {
       map(x => x)
     );
   }
+
+  getprofile() {
+    return this.http.get<User>(`${baseUrl}/me`).pipe(
+      map(x => x)
+    );
+  }
 }

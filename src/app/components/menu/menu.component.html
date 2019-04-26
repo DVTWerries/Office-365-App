@@ -1,10 +1,13 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="example-toolbar">
+<mat-spinner *ngIf="spinner" class="spinner"></mat-spinner>
+
+<div *ngIf="user" class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar *ngIf="!spinner" color="primary" class="example-toolbar">
     <mat-toolbar-row>
       <button mat-icon-button (click)="snav.toggle()">
         <mat-icon svgIcon="menu-burger" aria-hidden="false" aria-label="menu SVG icon">menu</mat-icon>
       </button>
-      <h1 class="example-app-name">Responsive App</h1>
+      <span class="example-spacer"></span>
+      <h1 class="example-app-name">{{user.displayName}}</h1>
       <span class="example-spacer"></span>
       <a mat-list-item routerLink="/login" id="profile-style">
         <mat-icon svgIcon="person" aria-hidden="false" aria-label="profile SVG icon"></mat-icon>
@@ -13,7 +16,7 @@
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav-container *ngIf="!spinner" class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56">
       <mat-nav-list>
@@ -37,5 +40,3 @@
 
   </mat-sidenav-container>
 </div>
-
-<div *ngIf="!shouldRun">Please open on Stackblitz to see result</div>

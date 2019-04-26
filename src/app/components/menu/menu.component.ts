@@ -1,19 +1,24 @@
 import {MediaMatcher} from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements OnDestroy {
+export class MenuComponent implements OnDestroy, OnInit {
 
+  user: User;
+  spinner: boolean;
   constructor(private oauthService: OAuthService,
               private authService: AuthService,
+              private userService: UserService,
               iconRegistry: MatIconRegistry,
               sanitizer: DomSanitizer,
               changeDetectorRef: ChangeDetectorRef,
@@ -47,6 +52,9 @@ export class MenuComponent implements OnDestroy {
 
   private mobileQueryListener: () => void;
 
+  ngOnInit() {
+    this.getProfile();
+  }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this.mobileQueryListener);
   }
@@ -54,6 +62,15 @@ export class MenuComponent implements OnDestroy {
   public logOut() {
     this.oauthService.logOut();
     this.authService.setLoggedIn(false);
+  }
+
+  getProfile() {
+    this.spinner = true;
+    this.userService.getprofile().subscribe(
+      userProfile => this.user = userProfile,
+      () => this.spinner = true,
+      () => this.spinner = false
+    );
   }
 
 }
