@@ -33,15 +33,15 @@ export class AppComponent {
     this.oauthService.tryLogin();
   }
 
-  public get name() {
-    const claims = this.oauthService.getIdentityClaims();
+  // public get name() {
+  //   const claims = this.oauthService.getIdentityClaims();
 
-    if (!claims) {
-      return null;
-    }
+  //   if (!claims) {
+  //     return null;
+  //   }
 
-    return (claims as any).name;
-  }
+  //   return (claims as any).name;
+  // }
 }
 
 
