@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { CanActivate } from '@angular/router/src/utils/preactivation';
-import { LoginComponent } from '../components/login/login.component';
 import { MatDialog } from '@angular/material';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { CanActivate } from '@angular/router/src/utils/preactivation';
+
+import { LoginComponent } from '../components/login/login.component';
 
 @Injectable({
   providedIn: 'root'

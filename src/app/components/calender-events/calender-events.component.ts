@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+
 import { CalenderEventsService } from 'src/app/services/calender-events.service';
 import { Event } from 'src/app/models/events';
 
@@ -31,7 +32,8 @@ export class CalenderEventsComponent implements OnInit {
 
   ngOnInit() {
     this.spinner = true;
-    this.calendarEventsApi.getCalenderEvents().subscribe(
+    this.calendarEventsApi.getCalenderEvents()
+    .subscribe(
       calendarEvents => {
       this.calendarEvents = calendarEvents;
     },

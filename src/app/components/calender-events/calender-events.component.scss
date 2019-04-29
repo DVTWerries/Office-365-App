@@ -1,4 +1,4 @@
-.grid-tile{
+.grid-tile {
     position: relative;
     background: lightgray;
     opacity: 0.8;
@@ -6,29 +6,29 @@
     padding: 0px !important;
 }
 
-.grid-list{
+.grid-list {
     padding: 10px !important;
     border-radius: 10px;
     background-color: lightgray;
     margin: 1rem;
 }
 
-.events-holder{
+.events-holder {
     padding: 10px;
 }
 
-.mat-grid-tile-heade-footer{
+.mat-grid-tile-heade-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    p{
+    p {
         margin: 0;
         display: flex;
         align-items: center;
     }
 
-    h3{
+    h3 {
         margin: 0px;
     }
 }

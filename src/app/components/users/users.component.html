@@ -13,13 +13,15 @@
 
   <ng-container cdkColumnDef="email">
     <mat-header-cell *cdkHeaderCellDef> email </mat-header-cell>
-    <mat-cell *cdkCellDef="let row"> {{row.userPrincipalName}} </mat-cell>
+    <mat-cell *cdkCellDef="let row">
+      <a href="mailto:{{row.userPrincipalName}}">{{row.userPrincipalName}}</a>
+    </mat-cell>
   </ng-container>
 
   <ng-container cdkColumnDef="action">
     <mat-header-cell *cdkHeaderCellDef> Action </mat-header-cell>
     <mat-cell *cdkCellDef="let row">
-      <button mat-icon-button color="primary" (click)="viewUser(row.id)" routerLink="/organisation/contacts/userDetails">
+      <button mat-icon-button color="primary" (click)="viewUser(row.id)" routerLink="/contacts/userDetails">
         <mat-icon class="mat-18" svgIcon="view" aria-hidden="false" aria-label="profile SVG icon"></mat-icon>view
       </button>
     </mat-cell>

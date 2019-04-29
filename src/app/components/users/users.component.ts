@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatSort, MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
-import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/models/user';
+
 import { map } from 'rxjs/operators';
+
+import { UserService } from 'src/app/services/user.service';
 import { UserDetailsService } from 'src/app/services/user-details.service';
 import { UserDetailsComponent } from '../user-details/user-details.component';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-user',
@@ -38,20 +40,19 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.spinner = true;
     this.dataSource.sort = this.sort;
-    this.viewAllUsers().subscribe(
+    this.viewAllUsers()
+     .subscribe(
       users => {
         this.users = users;
         this.dataSource = new MatTableDataSource(this.users);
       },
       error => this.spinner = true,
-      () => this.spinner = false
-    );
+      () => this.spinner = false);
   }
 
   viewAllUsers() {
-    return this.userService.getAllUsers().pipe(
-      map(users => users)
-    );
+    return this.userService.getAllUsers()
+    .pipe(map(users => users));
   }
 
   viewUser(id: string) {

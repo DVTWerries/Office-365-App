@@ -3,12 +3,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { MaterialModule } from './material-module';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
+
+import { AppComponent } from './app.component';
 import { TokenInterceptor } from './interceptors/token-interceptor';
 import { MenuComponent } from './components/menu/menu.component';
-import { MaterialModule } from './material-module';
 import { CalenderEventsComponent } from './components/calender-events/calender-events.component';
 import { LoginComponent } from './components/login/login.component';
 import { UsersComponent } from './components/users/users.component';
