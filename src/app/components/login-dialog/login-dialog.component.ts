@@ -4,8 +4,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login-dialog.component.html',
+  styleUrls: ['./login-dialog.component.scss']
 })
 export class LoginComponent implements OnInit {
 

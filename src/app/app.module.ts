@@ -10,8 +10,8 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { AppComponent } from './app.component';
 import { TokenInterceptor } from './interceptors/token-interceptor';
 import { MenuComponent } from './components/menu/menu.component';
-import { CalenderEventsComponent } from './components/calender-events/calender-events.component';
-import { LoginComponent } from './components/login/login.component';
+import { CalendarEventsComponent } from './components/calendar-events/calendar-events.component';
+import { LoginComponent } from './components/login-dialog/login-dialog.component';
 import { UsersComponent } from './components/users/users.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 
@@ -19,7 +19,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
   declarations: [
     AppComponent,
     MenuComponent,
-    CalenderEventsComponent,
+    CalendarEventsComponent,
     LoginComponent,
     UsersComponent,
     UserDetailsComponent,

@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { CanActivate } from '@angular/router/src/utils/preactivation';
 
-import { LoginComponent } from '../components/login/login.component';
+import { LoginComponent } from '../components/login-dialog/login-dialog.component';
 
 @Injectable({
   providedIn: 'root'
