@@ -18,7 +18,7 @@
     </mat-cell>
   </ng-container>
 
-  <ng-container cdkColumnDef="action">
+  <ng-container cdkColumnDef="action" *ngIf="mobileQuery.mathes"> 
     <mat-header-cell *cdkHeaderCellDef> Action </mat-header-cell>
     <mat-cell *cdkCellDef="let row">
       <button mat-icon-button color="primary" (click)="viewUser(row.id)" routerLink="/contacts/userDetails">

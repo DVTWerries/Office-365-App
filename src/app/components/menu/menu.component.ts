@@ -1,7 +1,7 @@
-import {MediaMatcher} from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 import { OAuthService } from 'angular-oauth2-oidc';
 
@@ -47,8 +47,6 @@ export class MenuComponent implements OnDestroy, OnInit {
   }
 
   mobileQuery: MediaQueryList;
-
-  fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
   private mobileQueryListener: () => void;
 

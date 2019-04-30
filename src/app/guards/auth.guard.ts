@@ -16,12 +16,11 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router, private oauthService: OAuthService, public dialog: MatDialog) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const claims = this.oauthService.getAccessToken();
-    if (!claims) {
+    if (this.oauthService.hasValidAccessToken()) {
+      return true;
+    } else {
       this.openDialog();
       return false;
-    } else {
-      return true;
     }
   }
 
