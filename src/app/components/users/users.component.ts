@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 import { UserDetailsService } from 'src/app/services/user-details.service';
 import { UserDetailsComponent } from '../user-details/user-details.component';
 import { User } from 'src/app/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -31,13 +32,14 @@ export class UsersComponent implements OnDestroy, OnInit {
               sanitizer: DomSanitizer,
               changeDetectorRef: ChangeDetectorRef,
               media: MediaMatcher,
+              private router: Router,
               private userService: UserService,
               private userDetailsService: UserDetailsService) {
     iconRegistry.addSvgIcon(
       'view',
       sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-remove_red_eye-24px.svg'));
 
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = media.matchMedia('(min-width: 600px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this.mobileQueryListener);
   }
@@ -71,6 +73,11 @@ export class UsersComponent implements OnDestroy, OnInit {
 
   viewUser(id: string) {
     this.userDetailsService.setID(id);
+  }
+
+  viewUserDetails() {
+    console.log(1);
+    this.router.navigateByUrl('/contacts/userDetails');
   }
 
 }

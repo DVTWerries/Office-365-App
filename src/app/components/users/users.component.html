@@ -7,18 +7,18 @@
 <mat-table *ngIf="!spinner" [dataSource]="dataSource">
 
   <ng-container cdkColumnDef="userName">
-    <mat-header-cell *cdkHeaderCellDef> User name </mat-header-cell>
-    <mat-cell *cdkCellDef="let row"> {{row.displayName}} </mat-cell>
-  </ng-container>
+      <mat-header-cell *cdkHeaderCellDef> User name </mat-header-cell>
+      <mat-cell *cdkCellDef="let row"> {{row.displayName}} </mat-cell>
+    </ng-container>
 
   <ng-container cdkColumnDef="email">
-    <mat-header-cell *cdkHeaderCellDef> email </mat-header-cell>
-    <mat-cell *cdkCellDef="let row">
-      <a href="mailto:{{row.userPrincipalName}}">{{row.userPrincipalName}}</a>
-    </mat-cell>
-  </ng-container>
+      <mat-header-cell *cdkHeaderCellDef> email </mat-header-cell>
+      <mat-cell *cdkCellDef="let row">
+        <a href="mailto:{{row.userPrincipalName}}">{{row.userPrincipalName}}</a>
+      </mat-cell>
+    </ng-container>
 
-  <ng-container cdkColumnDef="action" *ngIf="mobileQuery.mathes"> 
+  <ng-container cdkColumnDef="action" *ngIf="mobileQuery.matches"> 
     <mat-header-cell *cdkHeaderCellDef> Action </mat-header-cell>
     <mat-cell *cdkCellDef="let row">
       <button mat-icon-button color="primary" (click)="viewUser(row.id)" routerLink="/contacts/userDetails">
@@ -27,6 +27,6 @@
     </mat-cell>
   </ng-container>
 
-  <mat-header-row *cdkHeaderRowDef="['userName', 'email', 'action']"></mat-header-row>
-  <mat-row *cdkRowDef="let row; columns: ['userName', 'email', 'action']"></mat-row>
+  <mat-header-row *cdkHeaderRowDef="mobileQuery.matches ? ['userName', 'email', 'action'] : ['userName', 'email']"></mat-header-row>
+  <mat-row (click)="mobileQuery.matches ? null : viewUserDetails()" *cdkRowDef="let row; columns: mobileQuery.matches ? ['userName', 'email', 'action'] : ['userName', 'email']"></mat-row>
 </mat-table>
