@@ -16,11 +16,19 @@ table {
       max-width: 200px;
   }
   
-  .mat-form-field{
+  .mat-form-field {
     margin: 1rem !important;
     width: 50% !important;
   }
   
   .mat-table {
     margin: 1rem !important;
+  }
+
+  .hide{
+    display: none;
+  }
+
+  .display{
+    display: block;
   }

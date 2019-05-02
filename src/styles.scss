@@ -1,15 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-.mat-grid-tile .mat-figure{
+.mat-grid-tile .mat-figure {
     position: relative !important;
 }
 
-.td.mat-cell:last-of-type{
+.td.mat-cell:last-of-type {
     padding-right: 0 !important;
    }
 
-.spinner{
+.spinner {
     display: block;
     margin: 0 auto;
 }

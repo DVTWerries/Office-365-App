@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc';
-import { authConfig } from '../auth-config';
+
+import { authConfig } from './auth-config';
 import openIdConfig from '../openid-config.json';
 import openIdConfigKeys from '../openid-config.keys.json';
 
@@ -33,15 +34,15 @@ export class AppComponent {
     this.oauthService.tryLogin();
   }
 
-  public get name() {
-    const claims = this.oauthService.getIdentityClaims();
+  // public get name() {
+  //   const claims = this.oauthService.getIdentityClaims();
 
-    if (!claims) {
-      return null;
-    }
+  //   if (!claims) {
+  //     return null;
+  //   }
 
-    return (claims as any).name;
-  }
+  //   return (claims as any).name;
+  // }
 }
 
 

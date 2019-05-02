@@ -10,11 +10,11 @@
           <mat-icon svgIcon="menu-burger" aria-hidden="false" aria-label="menu SVG icon">menu</mat-icon>
         </button>
         <span class="example-spacer"></span>
-        <h1 class="example-app-name">{{user.displayName}}</h1>
+        <h1 class="example-app-name">Office-365 side app</h1>
         <span class="example-spacer"></span>
         <a mat-list-item routerLink="/login" id="profile-style">
           <mat-icon svgIcon="person" aria-hidden="false" aria-label="profile SVG icon"></mat-icon>
-          <span>Profile</span>
+          <span>{{user.displayName}}</span>
         </a>
       </mat-toolbar-row>
     </mat-toolbar>
@@ -27,11 +27,11 @@
             <mat-icon svgIcon="calender" aria-hidden="false" aria-label="calender-events SVG icon"></mat-icon>
             <span>Calender-Event</span>
           </a>
-          <a mat-list-item routerLink="/organisation/contacts">
+          <a mat-list-item routerLink="/contacts">
             <mat-icon svgIcon="contacts" aria-hidden="false" aria-label="contacts SVG icon"></mat-icon>
             <span>Personal Contacts</span>
           </a>
-          <a mat-list-item routerLink="/login" (click)="logOut()">
+          <a mat-list-item (click)="logOut()">
             <mat-icon svgIcon="logout" aria-hidden="false" aria-label="logout SVG icon"></mat-icon>
             <span>Logout</span>
           </a>
