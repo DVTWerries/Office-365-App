@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { UserDetailsService } from 'src/app/services/user-details.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 
@@ -10,16 +11,21 @@ import { User } from 'src/app/models/user';
 })
 export class ProfileComponent implements OnInit {
 
-  id: string;
+  spinner: boolean;
   user: User;
 
-  constructor(private userDetailsService: UserDetailsService, private userService: UserService ) { }
+  constructor(private router: ActivatedRoute, private userService: UserService ) { }
 
   ngOnInit() {
-    this.id = this.userDetailsService.getID();
-    this.userService.getUser(this.id).subscribe(
-      user => this.user = user
-    );
+    this.getProfile();
   }
 
+  getProfile() {
+    this.spinner = true;
+    this.userService.getprofile().subscribe(
+      userProfile => this.user = userProfile,
+      () => this.spinner = false,
+      () => this.spinner = false
+    );
+  }
 }
