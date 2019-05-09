@@ -36,8 +36,11 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // this.routerSubscription.unsubscribe();
-    // this.idSubscription.unsubscribe();
+    if (this.isProfile) {
+    } else {
+      this.routerSubscription.unsubscribe();
+      this.idSubscription.unsubscribe();
+    }
   }
 
 }
