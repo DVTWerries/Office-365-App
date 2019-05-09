@@ -1,17 +1,3 @@
-<div *ngIf="user" class="main-div">
-  <mat-card class="mat-card">
-    <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="mat-card-image" alt="Washed Out">
-    <mat-card-title>
-      <span class="md-headline">{{user.displayName}}</span>
-    </mat-card-title>
-    <mat-card-content>
-      <p>
-        The titles of {{user.displayName}} breakthrough song and the first single from Paracosm share the
-        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" routerLink="/contacts">Back</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+<mat-spinner *ngIf="spinner" class="spinner"></mat-spinner>
+
+<app-user-details *ngIf="user" isProfile=true profileUser="user"></app-user-details>

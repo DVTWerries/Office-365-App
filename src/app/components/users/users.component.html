@@ -21,7 +21,7 @@
   <ng-container cdkColumnDef="action" *ngIf="mobileQuery.matches"> 
     <mat-header-cell *cdkHeaderCellDef> Action </mat-header-cell>
     <mat-cell *cdkCellDef="let row">
-      <button mat-icon-button color="primary" (click)="viewUser(row.id)" routerLink="/contacts/{{row.id}}">
+      <button mat-icon-button color="primary" routerLink="/contacts/{{row.id}}">
         <mat-icon class="mat-18" svgIcon="view" aria-hidden="false" aria-label="profile SVG icon"></mat-icon>view
       </button>
     </mat-cell>

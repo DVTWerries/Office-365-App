@@ -6,7 +6,6 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 
 import { UserService } from 'src/app/services/user.service';
-import { UserDetailsService } from 'src/app/services/user-details.service';
 import { UserDetailsComponent } from '../user-details/user-details.component';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
@@ -33,8 +32,7 @@ export class UsersComponent implements OnDestroy, OnInit {
               changeDetectorRef: ChangeDetectorRef,
               media: MediaMatcher,
               private router: Router,
-              private userService: UserService,
-              private userDetailsService: UserDetailsService) {
+              private userService: UserService) {
     iconRegistry.addSvgIcon(
       'view',
       sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-remove_red_eye-24px.svg'));
@@ -69,10 +67,6 @@ export class UsersComponent implements OnDestroy, OnInit {
   viewAllUsers() {
     return this.userService.getAllUsers()
       .pipe(map(users => users));
-  }
-
-  viewUser(id: string) {
-    this.userDetailsService.setID(id);
   }
 
   viewUserDetails() {
