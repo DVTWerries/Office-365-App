@@ -1,3 +1,4 @@
 export interface ODataResponse<T> {
-    value: T[];
+    '@odata.nextLink': string;
+    value: T;
 }

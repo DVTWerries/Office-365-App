@@ -15,9 +15,19 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getAllUsers(): Observable<User[]> {
-    return this.http.get<ODataResponse<User>>(`${environment.baseUrl}/users`)
-      .pipe(map(x => x.value));
+  getUsers(top?: number): Observable<ODataResponse<User[]>> {
+    let queryString = '?$orderby=displayName';
+
+    if (top) {
+      queryString += `${queryString ? '&' : '?'}$top=${top}`;
+    }
+
+    return this.getNextUsers(`${environment.baseUrl}/users${queryString}`);
+  }
+
+  getNextUsers(nextLink: string): Observable<ODataResponse<User[]>> {
+    console.log(nextLink);
+    return this.http.get<ODataResponse<User[]>>(nextLink);
   }
 
   getUser(id: string): Observable<User> {

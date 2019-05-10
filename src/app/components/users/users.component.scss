@@ -1,34 +1,46 @@
 table {
-    width: 100%;
-  }
+  width: 100%;
+}
     
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
   
-  th.mat-sort-header-sorted {
-      color: black;
-  }
+th.mat-sort-header-sorted {
+    color: black;
+}
   
-  th.mat-header-cell {
-      text-align: left;
-      max-width: 200px;
-  }
+th.mat-header-cell {
+    text-align: left;
+    max-width: 200px;
+}
   
-  .mat-form-field {
+.mat-form-field {
     margin: 1rem !important;
     width: 50% !important;
-  }
+}
   
-  .mat-table {
+.mat-table {
     margin: 1rem !important;
-  }
+}
 
-  .hide{
+.hide{
     display: none;
-  }
+}
 
-  .display{
+.display{
     display: block;
-  }
+}
+
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+cdk-virtual-scroll-viewport {
+    .item {
+        height: 24px;
+    }
+}
