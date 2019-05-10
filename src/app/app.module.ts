@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -17,6 +18,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { MaterialModule } from './material-module';
 import { AppRoutingModule } from './app-routing.module';
@@ -52,6 +54,7 @@ import { FilterPipe} from './pipes/filter.pipe';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    ScrollingModule,
     MaterialModule,
     OAuthModule.forRoot()
   ],
@@ -68,7 +71,8 @@ import { FilterPipe} from './pipes/filter.pipe';
 export class AppModule {
   constructor() {
     library.add(faEdit, faUserCircle, faCalendar, faHourglassStart,
-      faHourglassEnd, faMapMarkerAlt, faSignOutAlt, faUsers, faBars, faEye );
+      faHourglassEnd, faMapMarkerAlt, faSignOutAlt, faUsers, faBars,
+      faEye, faSearch );
   }
 
 }

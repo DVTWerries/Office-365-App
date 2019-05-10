@@ -15,7 +15,7 @@ export class CalendarEventsService {
 
   constructor(private http: HttpClient) { }
 
-  getCalenderEvents(): Observable<Event[]> {
+  getCalenderEvents(): Observable<Event> {
     return this.http.get<ODataResponse<Event>>(`${environment.baseUrl}/me/events?$select=subject,organizer,attendees,start,end,location`)
     .pipe(map(x => x.value));
   }

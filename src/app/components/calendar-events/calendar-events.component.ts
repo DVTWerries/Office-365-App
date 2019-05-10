@@ -10,7 +10,7 @@ import { Event } from 'src/app/models/events';
 })
 export class CalendarEventsComponent implements OnInit {
 
-  calendarEvents: Event[];
+  calendarEvents: Event;
   spinner: boolean;
 
   constructor(private calendarEventsApi: CalendarEventsService) {}

@@ -1,52 +1,26 @@
 <mat-spinner *ngIf="spinner" class="spinner"></mat-spinner>
 
-<ng-template [ngIf]="mobileQuery.matches" [ngIfElse]="list">
-  <mat-form-field *ngIf="!spinner">
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-  </mat-form-field>
+<mat-form-field *ngIf="!spinner">
+  <mat-label>
+    <fa-icon class="mat-18" [icon]="['fa', 'search']" aria-hidden="false" aria-label="profile SVG icon"></fa-icon>
+  </mat-label>
+  <input [(ngModel)]="searchText" matInput placeholder="Search contact ">
+</mat-form-field>
 
-  <mat-table *ngIf="!spinner" [dataSource]="dataSource">
-
-    <ng-container cdkColumnDef="userName">
-      <mat-header-cell *cdkHeaderCellDef> User name </mat-header-cell>
-      <mat-cell *cdkCellDef="let row"> {{row.displayName}} </mat-cell>
-    </ng-container>
-
-    <ng-container cdkColumnDef="email">
-      <mat-header-cell *cdkHeaderCellDef> email </mat-header-cell>
-      <mat-cell *cdkCellDef="let row">
-        <a href="mailto:{{row.userPrincipalName}}">{{row.userPrincipalName}}</a>
-      </mat-cell>
-    </ng-container>
-
-    <ng-container cdkColumnDef="action" *ngIf="mobileQuery.matches">
-      <mat-header-cell *cdkHeaderCellDef> Action </mat-header-cell>
-      <mat-cell *cdkCellDef="let row">
-        <button mat-icon-button color="primary">
-          <fa-icon class="mat-18" [icon]="['fa', 'eye']" aria-hidden="false" aria-label="profile SVG icon"></fa-icon>view
-        </button>
-      </mat-cell>
-    </ng-container>
-
-    <mat-header-row *cdkHeaderRowDef="['userName', 'email', 'action']">
-    </mat-header-row>
-    <mat-row *cdkRowDef="let row; columns: ['userName', 'email', 'action']">
-    </mat-row>
-  </mat-table>
-</ng-template>
-
-<ng-template #list>
-  <mat-form-field *ngIf="!spinner">
-    <input *ngIf="!mobileQuery.matches" [(ngModel)]="searchText" matInput placeholder="Filter">
-  </mat-form-field>
-  <mat-list *ngIf="!spinner">
-    <h3 mat-subheader>Organisation Contacts</h3>
-    <mat-divider></mat-divider>
-    <mat-list-item *ngFor="let user of users | filter : searchText" routerLink="/contacts/{{user.id}}">
-      <fa-icon mat-list-icon [icon]="['far', 'user-circle']"></fa-icon>
-      <h4 mat-line>{{user.displayName}}</h4>
-      <p mat-line> {{user.userPrincipalName}} </p>
-      <fa-icon class="mat-18" [icon]="['far', 'edit']" aria-hidden="false" aria-label="profile SVG icon"></fa-icon>
-    </mat-list-item>
-  </mat-list>
-</ng-template>
+<ng-container *ngIf="(infinate$ | async) as infinate" #list>
+  <cdk-virtual-scroll-viewport itemSize="24" fxFlex="1 grow"
+    (scrolledIndexChange)="loadNextUsers($event, infinate.nextLink)">
+    <mat-list>
+      <h3 mat-subheader>Organisation Contacts</h3>
+      <mat-divider></mat-divider>
+      <mat-list-item *cdkVirtualFor="let user of infinate.data | filter : searchText"
+        routerLink="/contacts/{{user.id}}">
+        <fa-icon mat-list-icon [icon]="['far', 'user-circle']"></fa-icon>
+        <h4 mat-line>{{user.displayName}}</h4>
+        <p mat-line> {{user.userPrincipalName}} </p>
+        <fa-icon class="mat-18" [icon]="['far', 'edit']" aria-hidden="false" aria-label="profile SVG icon"></fa-icon>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </cdk-virtual-scroll-viewport>
+</ng-container>
