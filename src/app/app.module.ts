@@ -2,7 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faEdit } from '@fortawesome/free-regular-svg-icons';
+import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
+import { faCalendar } from '@fortawesome/free-regular-svg-icons';
+import { faHourglassStart } from '@fortawesome/free-solid-svg-icons';
+import { faHourglassEnd } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 import { MaterialModule } from './material-module';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +30,8 @@ import { UsersComponent } from './components/users/users.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
+import { FilterPipe} from './pipes/filter.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,11 +41,14 @@ import { ProfileComponent } from './components/profile/profile.component';
     UsersComponent,
     UserDetailsComponent,
     ProfileComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    FontAwesomeModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     MaterialModule,
@@ -46,4 +64,9 @@ import { ProfileComponent } from './components/profile/profile.component';
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    library.add(faEdit, faUserCircle, faCalendar, faHourglassStart, faHourglassEnd, faMapMarkerAlt, faSignOutAlt, faUsers, faBars );
+  }
+
+}

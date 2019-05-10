@@ -3,24 +3,25 @@
 <div class="events-holder" *ngIf="calendarEvents && !spinner">
     <mat-grid-list class="grid-list" cols="1" rowHeight="6:1" *ngFor="let event of calendarEvents">
         <mat-grid-tile-header class="mat-grid-tile-heade-footer">
-            <mat-icon svgIcon="event" aria-hidden="false" aria-label="Example thumbs up SVG icon">
-            </mat-icon>
+            <fa-icon [icon]="['far','calendar']" aria-hidden="false" aria-label="Example thumbs up SVG icon">
+            </fa-icon>
             <h3>{{event.subject}}</h3>
             <p>
-                <mat-icon svgIcon="location" aria-hidden="false" aria-label="Example thumbs up SVG icon">
-                </mat-icon><span>{{event.location.uniqueId}}</span>
+                    <!-- <i class="far fa-map-marker-alt"></i> -->
+                <fa-icon [icon]="['fas','map-marker-alt']" aria-hidden="false" aria-label="Example thumbs up SVG icon">
+                </fa-icon><span>{{event.location.uniqueId}}</span>
             </p>
         </mat-grid-tile-header>
         <mat-grid-tile-footer class="mat-grid-tile-heade-footer">
             <p>
-                <mat-icon svgIcon="start-date" aria-hidden="false" aria-label="Example thumbs up SVG icon">
-                </mat-icon>
+                <fa-icon [icon]="['fa','hourglass-start']" aria-hidden="false" aria-label="Example thumbs up SVG icon">
+                </fa-icon>
                 <span>{{event.start.dateTime | date: 'shortTime'}}</span>
             </p>
             <span>to</span>
             <p>
-                <mat-icon svgIcon="start-date" aria-hidden="false" aria-label="Example thumbs up SVG icon">
-                </mat-icon>
+                <fa-icon [icon]="['fa','hourglass-end']" aria-hidden="false" aria-label="Example thumbs up SVG icon">
+                </fa-icon>
                 <span> {{event.end.dateTime | date: 'shortTime'}}</span>
             </p>
         </mat-grid-tile-footer>

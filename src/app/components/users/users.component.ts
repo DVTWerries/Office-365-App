@@ -7,7 +7,6 @@ import { map } from 'rxjs/operators';
 
 import { UserService } from 'src/app/services/user.service';
 import { UserDetailsComponent } from '../user-details/user-details.component';
-import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class UsersComponent implements OnDestroy, OnInit {
 
-  users: User[];
+  users: any[];
   spinner: boolean;
   displayedColumns: string[] = ['userName', 'email', 'action'];
   dataSource = new MatTableDataSource();
@@ -67,11 +66,6 @@ export class UsersComponent implements OnDestroy, OnInit {
   viewAllUsers() {
     return this.userService.getAllUsers()
       .pipe(map(users => users));
-  }
-
-  viewUserDetails() {
-    console.log(1);
-    this.router.navigateByUrl('/contacts/userDetails');
   }
 
 }
