@@ -16,6 +16,7 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 import { MaterialModule } from './material-module';
 import { AppRoutingModule } from './app-routing.module';
@@ -66,7 +67,8 @@ import { FilterPipe} from './pipes/filter.pipe';
 })
 export class AppModule {
   constructor() {
-    library.add(faEdit, faUserCircle, faCalendar, faHourglassStart, faHourglassEnd, faMapMarkerAlt, faSignOutAlt, faUsers, faBars );
+    library.add(faEdit, faUserCircle, faCalendar, faHourglassStart,
+      faHourglassEnd, faMapMarkerAlt, faSignOutAlt, faUsers, faBars, faEye );
   }
 
 }

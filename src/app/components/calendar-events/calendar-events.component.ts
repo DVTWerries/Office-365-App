@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatIconRegistry } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
 
 import { CalendarEventsService } from 'src/app/services/calender-events.service';
 import { Event } from 'src/app/models/events';
@@ -15,20 +13,7 @@ export class CalendarEventsComponent implements OnInit {
   calendarEvents: Event[];
   spinner: boolean;
 
-  constructor(private calendarEventsApi: CalendarEventsService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon(
-      'event',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-event-24px.svg'));
-    iconRegistry.addSvgIcon(
-      'location',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/67347.svg'));
-    iconRegistry.addSvgIcon(
-      'start-date',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-access_time-24px.svg'));
-    iconRegistry.addSvgIcon(
-      'end-date',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-timer-24px.svg'));
-  }
+  constructor(private calendarEventsApi: CalendarEventsService) {}
 
   ngOnInit() {
     this.spinner = true;
