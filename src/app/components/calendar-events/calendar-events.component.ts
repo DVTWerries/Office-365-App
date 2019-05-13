@@ -16,6 +16,7 @@ export class CalendarEventsComponent implements OnInit, OnDestroy {
   spinner: boolean;
   mobileQuery: MediaQueryList;
   selectedDate: any;
+  hideCalendar = false;
 
   constructor(private calendarEventsApi: CalendarEventsService,
               changeDetectorRef: ChangeDetectorRef,
@@ -49,7 +50,18 @@ export class CalendarEventsComponent implements OnInit, OnDestroy {
     return (date === 1 || date === 20) ? 'example-custom-date-class' : undefined;
   }
 
+  checkForMobile() {
+    if (this.mobileQuery.matches) {
+      this.hideCalendar = true;
+    } else {
+      this.hideCalendar = false;
+    }
+  }
+
   getSelectedDate(event) {
     this.selectedDate = event;
+    this.checkForMobile();
   }
+
+
 }

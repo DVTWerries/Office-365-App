@@ -1,23 +1,26 @@
 <mat-spinner *ngIf="spinner" class="spinner"></mat-spinner>
 
+<div *ngIf="selectedDate">
+    <fa-icon *ngIf="mobileQuery.matches" [icon]="['fas','angle-left']"></fa-icon>
+</div>
 <mat-grid-list cols="3">
     <mat-grid-tile *ngIf="mobileQuery.matches" class="grid-tile">
-        <div *ngIf="selectedDate">
-            <fa-icon [icon]="['far','circle']"></fa-icon>
-            <span>You selected the following date</span>
-            <h1>{{selectedDate}}</h1>
-            <button>
-                <fa-icon [icon]="['far','circle']"></fa-icon>
+        <div class="date-selected" *ngIf="selectedDate">
+            <h1 class="day">{{selectedDate | date:'dd'}}</h1>
+            <h4 class="week-day">{{selectedDate | date: 'EEEE' | uppercase}}</h4>
+            <button mat-fab color="primary">
+                <fa-icon [icon]="['fas','angle-down']"></fa-icon>
             </button>
+            <h5>You have 5 events on this day</h5>
         </div>
     </mat-grid-tile>
-    <mat-grid-tile *ngIf="!selectedDate" [colspan]="2" [ngClass]="mobileQuery.matches ? 'grid-tile' : 'grid-tile-desktop' ">
+    <mat-grid-tile *ngIf="!hideCalendar" [colspan]="2" [ngClass]="mobileQuery.matches ? 'grid-tile' : 'grid-tile-desktop' ">
         <mat-calendar *ngIf="!spinner" [dateClass]="dateClass" [selected]="selectedDate"
             (selectedChange)="getSelectedDate($event)"></mat-calendar>
     </mat-grid-tile>
-     <mat-grid-tile [ngClass]="mobileQuery.matches ? 'grid-tile' : 'grid-tile-desktop' ">
+    <mat-grid-tile [ngClass]="mobileQuery.matches ? 'grid-tile' : 'grid-tile-desktop' ">
         <mat-list>
-            <h3 mat-subheader>Events</h3>
+            <h3 mat-subheader>Upcomming Events</h3>
             <mat-list-item *ngFor="let event of calendarEvents">
                 <fa-icon [icon]="['far', 'circle']" mat-list-icon></fa-icon>
                 <h4 mat-line>{{event.subject}}</h4>
