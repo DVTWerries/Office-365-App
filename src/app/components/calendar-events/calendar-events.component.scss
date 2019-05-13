@@ -1,34 +1,26 @@
-.grid-tile {
-    position: relative;
-    background: lightgray;
-    opacity: 0.8;
-    border-radius: 10px;
-    padding: 0px !important;
+.mat-grid-list{
+    padding-bottom: 0;
+    height: 100%;
 }
 
-.grid-list {
-    padding: 10px !important;
-    border-radius: 10px;
-    background-color: lightgray;
-    margin: 1rem;
+.grid-tile{
+    left: 0 !important;
+    width: 100% !important;
+    padding-top: 0 !important;
+    position: relative !important;
+    height: 100%;
 }
 
-.events-holder {
-    padding: 10px;
+.grid-tile-desktop{
+    padding-top: 0 !important;
+    height: 100%;
 }
 
-.mat-grid-tile-heade-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    p {
-        margin: 0;
-        display: flex;
-        align-items: center;
-    }
-
-    h3 {
-        margin: 0px;
-    }
+.mat-list-base{
+    background-color: whitesmoke;
 }
+
+.example-custom-date-class {
+    background: orange;
+    border-radius: 100%;
+  }

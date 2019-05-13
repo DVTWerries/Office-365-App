@@ -4,7 +4,7 @@ export interface Event {
     start: {
         dateTime: string;
     };
-    endDate: {
+    end: {
         dateTime: string;
     };
     location: {

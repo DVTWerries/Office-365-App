@@ -1,33 +1,33 @@
 <mat-spinner *ngIf="spinner" class="spinner"></mat-spinner>
 
-<div class="events-holder" *ngIf="calendarEvents && !spinner">
-    <mat-grid-list class="grid-list" cols="1" rowHeight="6:1" *ngFor="let event of calendarEvents">
-        <mat-grid-tile-header class="mat-grid-tile-heade-footer">
-            <fa-icon [icon]="['far','calendar']" aria-hidden="false" aria-label="Example thumbs up SVG icon">
-            </fa-icon>
-            <h3>{{event.subject}}</h3>
-            <p>
-                    <!-- <i class="far fa-map-marker-alt"></i> -->
-                <fa-icon [icon]="['fas','map-marker-alt']" aria-hidden="false" aria-label="Example thumbs up SVG icon">
-                </fa-icon><span>{{event.location.uniqueId}}</span>
-            </p>
-        </mat-grid-tile-header>
-        <mat-grid-tile-footer class="mat-grid-tile-heade-footer">
-            <p>
-                <fa-icon [icon]="['fa','hourglass-start']" aria-hidden="false" aria-label="Example thumbs up SVG icon">
-                </fa-icon>
-                <span>{{event.start.dateTime | date: 'shortTime'}}</span>
-            </p>
-            <span>to</span>
-            <p>
-                <fa-icon [icon]="['fa','hourglass-end']" aria-hidden="false" aria-label="Example thumbs up SVG icon">
-                </fa-icon>
-                <span> {{event.end.dateTime | date: 'shortTime'}}</span>
-            </p>
-        </mat-grid-tile-footer>
-    </mat-grid-list>
-</div>
-
+<mat-grid-list cols="3">
+    <mat-grid-tile *ngIf="mobileQuery.matches" class="grid-tile">
+        <div *ngIf="selectedDate">
+            <fa-icon [icon]="['far','circle']"></fa-icon>
+            <span>You selected the following date</span>
+            <h1>{{selectedDate}}</h1>
+            <button>
+                <fa-icon [icon]="['far','circle']"></fa-icon>
+            </button>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile *ngIf="!selectedDate" [colspan]="2" [ngClass]="mobileQuery.matches ? 'grid-tile' : 'grid-tile-desktop' ">
+        <mat-calendar *ngIf="!spinner" [dateClass]="dateClass" [selected]="selectedDate"
+            (selectedChange)="getSelectedDate($event)"></mat-calendar>
+    </mat-grid-tile>
+     <mat-grid-tile [ngClass]="mobileQuery.matches ? 'grid-tile' : 'grid-tile-desktop' ">
+        <mat-list>
+            <h3 mat-subheader>Events</h3>
+            <mat-list-item *ngFor="let event of calendarEvents">
+                <fa-icon [icon]="['far', 'circle']" mat-list-icon></fa-icon>
+                <h4 mat-line>{{event.subject}}</h4>
+                <p mat-line> {{event.start.dateTime | date}}</p>
+                <p mat-line> {{event.end.dateTime | date}}</p>
+                <p mat-line> {{event.location.uniqueId}}</p>
+            </mat-list-item>
+        </mat-list>
+    </mat-grid-tile>
+</mat-grid-list>
 
 <div *ngIf="calendarEvents && calendarEvents.length <= 0">
     <div class="notification is-warning">
