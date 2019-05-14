@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { Router } from '@angular/router';
 
 import { CalendarEventsService } from 'src/app/services/calender-events.service';
 import { Event } from 'src/app/models/events';
-import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-calendar-events',
@@ -15,10 +17,12 @@ export class CalendarEventsComponent implements OnInit, OnDestroy {
   calendarEvents: Event;
   spinner: boolean;
   mobileQuery: MediaQueryList;
-  selectedDate: any;
+  selectedDate: Date;
   hideCalendar = false;
 
   constructor(private calendarEventsApi: CalendarEventsService,
+              private router: Router,
+              private datePipe: DatePipe,
               changeDetectorRef: ChangeDetectorRef,
               media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 724px)');
@@ -59,9 +63,10 @@ export class CalendarEventsComponent implements OnInit, OnDestroy {
   }
 
   getSelectedDate(event) {
-    this.selectedDate = event;
+    this.selectedDate = event as Date;
     this.checkForMobile();
+    if (this.mobileQuery.matches) {
+      this.router.navigate(['/calendar-events', this.selectedDate.toString() ]);
+    }
   }
-
-
 }

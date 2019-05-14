@@ -3,20 +3,6 @@
     height: 100%;
 }
 
-.grid-tile{
-    left: 0 !important;
-    width: 100% !important;
-    padding-top: 0 !important;
-    margin-top: 0px !important;
-    position: relative !important;
-    height: 100%;
-}
-
-.grid-tile-desktop{
-    padding-top: 0 !important;
-    height: 100%;
-}
-
 .mat-list-base{
     background-color: whitesmoke;
 }
@@ -25,18 +11,3 @@
     background: orange;
     border-radius: 100%;
   }
-
-.day{
-    margin-bottom: 0px;
-    font-size: 10rem
-}
-
-.week-day{
-    margin-top: 0px;
-    font-size: 2rem;
-}
-
-.date-selected{
-    margin-bottom: 11rem;
-    text-align: center;
-}

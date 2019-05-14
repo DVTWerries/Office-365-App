@@ -1,0 +1,22 @@
+<mat-grid-tile class="grid-tile">
+    <div class="date-selected" *ngIf="selectedDate">
+        <h1 class="day">{{selectedDate | date:'dd'}}</h1>
+        <h4 class="week-day">{{selectedDate | date: 'EEEE' | uppercase}}</h4>
+        <button mat-fab color="primary">
+            <fa-icon [icon]="['fas','angle-down']"></fa-icon>
+        </button>
+        <h5>You have 5 events on this day</h5>
+    </div>
+</mat-grid-tile>
+<mat-grid-tile *ngIf="events" [ngClass]="mobileQuery.matches ? 'grid-tile' : 'grid-tile-desktop' ">
+    <mat-list>
+        <mat-divider></mat-divider>
+        <mat-list-item *ngFor="let event of events">
+            <fa-icon [icon]="['far', 'circle']" mat-list-icon></fa-icon>
+            <h4 mat-line>{{event.subject}}</h4>
+            <p mat-line> {{event.location.uniqueId}}</p>
+            <h3 class="mat-18">{{event.start.dateTime | date}}</h3>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+</mat-grid-tile>
