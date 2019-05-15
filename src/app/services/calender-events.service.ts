@@ -19,4 +19,14 @@ export class CalendarEventsService {
     return this.http.get<ODataResponse<Event>>(`${environment.baseUrl}/me/events?$select=subject,organizer,attendees,start,end,location`)
     .pipe(map(x => x.value));
   }
+
+  getEvent(day: any): Observable<Event> {
+    const selectedDay = new Date(day);
+    const nextDate = new Date(day);
+    nextDate.setDate(selectedDay.getDate() + 1);
+    return this.http.get<ODataResponse<Event>>(`
+        ${environment.baseUrl}/me/calendarview?startdatetime=${day}&enddatetime=${nextDate.toISOString()}
+    `)
+    .pipe(map(x => x.value));
+  }
 }

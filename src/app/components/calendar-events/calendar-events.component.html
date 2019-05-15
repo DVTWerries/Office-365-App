@@ -4,17 +4,17 @@
     <fa-icon *ngIf="mobileQuery.matches" [icon]="['fas','angle-left']"></fa-icon>
 </div>
 <h4>Upcomming Events</h4>
-<mat-grid-list cols="3">
-    <mat-grid-tile *ngIf="!hideCalendar" [colspan]="2"
+<mat-grid-list cols="5" gutterSize="4rem">
+    <mat-grid-tile *ngIf="!hideCalendar" [colspan]="3"
         [ngClass]="mobileQuery.matches ? 'grid-tile' : 'grid-tile-desktop' ">
         <mat-calendar *ngIf="!spinner" [dateClass]="dateClass" [selected]="selectedDate"
             (selectedChange)="getSelectedDate($event)"></mat-calendar>
     </mat-grid-tile>
-    <mat-grid-tile *ngIf="calendarEvents" [ngClass]="mobileQuery.matches ? 'grid-tile' : 'grid-tile-desktop' ">
-        <mat-list>
+    <mat-grid-tile [colspan]="2" *ngIf="calendarEvents" [ngClass]="mobileQuery.matches ? 'grid-tile' : 'grid-tile-desktop' ">
+        <app-day-events *ngIf="selectedDate" [desktopSelectedDate]="selectedDate"></app-day-events>
+        <mat-list *ngIf="!selectedDate">
             <mat-divider></mat-divider>
             <mat-list-item *ngFor="let event of calendarEvents">
-                <fa-icon [icon]="['far', 'circle']" mat-list-icon></fa-icon>
                 <h4 mat-line>{{event.subject}}</h4>
                 <p mat-line> {{event.location.uniqueId}}</p>
                 <h3 class="mat-18">{{event.start.dateTime | date}}</h3>

@@ -1,11 +1,12 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CalendarEventsService } from 'src/app/services/calender-events.service';
-import { mergeMap } from 'rxjs/operators';
-import { Event } from 'src/app/models/events';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { DatePipe } from '@angular/common';
+
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
+
+import { Event } from 'src/app/models/events';
+import { CalendarEventsService } from 'src/app/services/calender-events.service';
 
 @Component({
   selector: 'app-day-events',
@@ -18,12 +19,11 @@ export class DayEventsComponent implements OnInit, OnDestroy {
   idSubscription: Subscription;
   idSource = new BehaviorSubject<string>('');
   events: Event;
-  selectedDate: any;
+  mobileSelectedDate: any;
   mobileQuery: MediaQueryList;
 
   constructor(private router: ActivatedRoute,
               private calendarEventService: CalendarEventsService,
-              private datePipe: DatePipe,
               changeDetectorRef: ChangeDetectorRef,
               media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 724px)');
@@ -31,20 +31,31 @@ export class DayEventsComponent implements OnInit, OnDestroy {
     this.mobileQuery.addListener(this.mobileQueryListener);
   }
 
+  @Input() desktopSelectedDate: any;
   private mobileQueryListener: () => void;
   ngOnInit() {
-    this.routerSubscription = this.router.params
-      .subscribe(params => {
-        this.selectedDate = params.selectedDate.replace(/\d+% ?/g, '');
-        this.idSource.next(this.selectedDate);
-      });
+    if (this.desktopSelectedDate) {
+      this.getEvent(this.desktopSelectedDate)
+        .subscribe(event => this.events = event);
+    } else {
+      this.routerSubscription = this.router.params
+        .subscribe(params => {
+          this.mobileSelectedDate = params.selectedDate.replace(/\d+% ?/g, '');
+          this.idSource.next(this.mobileSelectedDate);
+        });
+      this.idSubscription = this.idSource
+        .pipe(mergeMap(selectedDay => {
+          console.log(selectedDay);
+          return this.getEvent(selectedDay);
+        }))
+        .subscribe(event => this.events = event);
+    }
+  }
 
-    this.idSubscription = this.idSource
-      .pipe(mergeMap(selectedDay => {
-        const day = this.datePipe.transform(selectedDay, 'yyyy-MM-ddTHH:mm:ss.sss');
-        return this.calendarEventService.getEvent(day);
-      }))
-      .subscribe(event => this.events = event);
+  getEvent(selectedDate: any) {
+    const date = new Date(selectedDate);
+    const startTime = date.toISOString();
+    return this.calendarEventService.getEvent(startTime);
   }
 
   ngOnDestroy() {

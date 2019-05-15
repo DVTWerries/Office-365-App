@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CalenderEventsService } from './calender-events.service';
+import { CalendarEventsService } from './calender-events.service';
 
 describe('CalenderEventsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

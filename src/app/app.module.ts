@@ -37,6 +37,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { ProfileComponent } from './components/profile/profile.component';
 
 import { FilterPipe} from './pipes/filter.pipe';
+import { DayEventsComponent } from './components/day-events/day-events.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { FilterPipe} from './pipes/filter.pipe';
     UsersComponent,
     UserDetailsComponent,
     ProfileComponent,
-    FilterPipe
+    FilterPipe,
+    DayEventsComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ import { FilterPipe} from './pipes/filter.pipe';
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  }],
+  },
+  DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {

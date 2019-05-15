@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { MatTableDataSource, MatSort } from '@angular/material';
 
@@ -24,14 +24,11 @@ export class UsersComponent implements OnInit {
   spinner: boolean;
   displayedColumns: string[] = ['userName', 'email', 'action'];
   dataSource = new MatTableDataSource();
-  mobileQuery: MediaQueryList;
-  private mobileQueryListener: () => void;
   private pageSize = 100;
   next$ = new BehaviorSubject<{ nextPosition: number, nextLink: string }>({ nextPosition: 1, nextLink: null });
   infinate$: Observable<{ nextLink: string, data: User[] }>;
 
-  constructor(changeDetectorRef: ChangeDetectorRef,
-              private userService: UserService) {}
+  constructor(private userService: UserService) {}
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

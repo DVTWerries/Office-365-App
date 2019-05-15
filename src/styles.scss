@@ -14,3 +14,16 @@
     display: block;
     margin: 0 auto;
 }
+
+.grid-tile{
+    left: 0 !important;
+    width: 100% !important;
+    padding-top: 0 !important;
+    margin-top: 0px !important;
+    position: relative !important;
+}
+
+.grid-tile-desktop{
+    padding-top: 1rem !important;
+    height: 100%;
+}
