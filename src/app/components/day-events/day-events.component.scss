@@ -1,15 +1,31 @@
-h1{
-    margin-bottom: 0px;
-    font-size: 10rem
+h1 {
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+    font-size: 12rem;
 }
 
-h4{
-    margin-bottom: 0px;
-    margin-top: 0px;
+h4 {
+    margin-top: 0rem;
     font-size: 2rem;
 }
 
-.date-selected{
-    margin-bottom: 11rem;
+.date-selected {
+    margin-bottom: 2rem;
     text-align: center;
+}
+
+.mat-list-item {
+    background: white !important;
+    border-radius: 3rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.mat-list-base {
+    padding: 1rem !important;
+}
+
+.add-event {
+    position: absolute;
+    right: 0;
+    transform: translateY(-50%) translateX(-50%);
 }

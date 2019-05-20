@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-login',

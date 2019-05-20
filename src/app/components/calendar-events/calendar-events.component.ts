@@ -16,7 +16,7 @@ export class CalendarEventsComponent implements OnInit, OnDestroy {
   calendarEvents: Event;
   spinner: boolean;
   mobileQuery: MediaQueryList;
-  selectedDate: string;
+  selectedDate: any;
   hideCalendar = false;
 
   constructor(private calendarEventsApi: CalendarEventsService,
@@ -31,6 +31,7 @@ export class CalendarEventsComponent implements OnInit, OnDestroy {
   private mobileQueryListener: () => void;
 
   ngOnInit() {
+    this.selectedDate = new Date();
     this.spinner = true;
     this.calendarEventsApi.getCalenderEvents()
     .subscribe(

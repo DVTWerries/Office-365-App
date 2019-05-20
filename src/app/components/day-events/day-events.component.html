@@ -1,23 +1,23 @@
 <mat-spinner *ngIf="!events" class="spinner"></mat-spinner>
 
+<div class="add-event">
+    <button (click)="openDialog()" mat-fab color="primary">
+        <fa-icon [icon]="['fa','plus']">mode_edit</fa-icon>
+    </button>
+</div>
 <ng-container *ngIf="events">
     <div class="grid-tile date-selected">
-        <h1 class="day">{{mobileSelectedDate || desktopSelectedDate | date:'dd'}}</h1>
-        <h4 class="week-day">{{mobileSelectedDate || desktopSelectedDate | date: 'EEEE' | uppercase}}</h4>
-        <button mat-fab color="primary">
-            <fa-icon [icon]="['fas','angle-down']"></fa-icon>
-        </button>
-        <h5>You have events on this day</h5>
+        <h1 class="day">{{mobileSelectedDate || desktopSelectedDate || currentDate | date:'dd'}}</h1>
+        <h4 class="week-day">{{mobileSelectedDate || desktopSelectedDate || currentDate | date: 'EEEE' | uppercase}}
+        </h4>
+        <h3>You have the following events for today: </h3>
     </div>
     <div [ngClass]="mobileQuery.matches ? 'grid-tile' : 'grid-tile-desktop' ">
         <mat-list>
-            <mat-divider></mat-divider>
-            <mat-list-item *ngFor="let event of events">
-                <fa-icon [icon]="['far', 'circle']" mat-list-icon></fa-icon>
+            <mat-list-item class="mat-list-item" *ngFor="let event of events">
                 <h4 mat-line>{{event.subject}}</h4>
                 <p mat-line> {{event.location.uniqueId}}</p>
-                <h3 class="mat-18">{{event.start.dateTime | date}}</h3>
-                <mat-divider></mat-divider>
+                <h3 class="mat-18">{{event.start.dateTime | date: 'shortTime'}}</h3>
             </mat-list-item>
         </mat-list>
     </div>

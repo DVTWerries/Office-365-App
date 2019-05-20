@@ -29,4 +29,9 @@ export class CalendarEventsService {
     `)
     .pipe(map(x => x.value));
   }
+
+  createEvent(event): void {
+    const newLocal = this.http.post(`${environment.baseUrl}/me/events`, event);
+    newLocal.subscribe((value) => { console.log(value); });
+  }
 }

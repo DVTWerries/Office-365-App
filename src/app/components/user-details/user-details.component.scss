@@ -1,10 +1,10 @@
-.main-div{
+.main-div {
     height: 40vh;
     display: grid;
     grid-template-columns: 20% auto 20%;
     align-items: center;
   }
 
-.mat-card{
+.mat-card {
     grid-column: 2;
 }

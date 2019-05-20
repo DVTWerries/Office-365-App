@@ -3,24 +3,15 @@
 <div *ngIf="selectedDate">
     <fa-icon *ngIf="mobileQuery.matches" [icon]="['fas','angle-left']"></fa-icon>
 </div>
-<h4>Upcomming Events</h4>
-<mat-grid-list cols="5" gutterSize="4rem">
-    <mat-grid-tile *ngIf="!hideCalendar" [colspan]="3"
+<mat-grid-list cols="7">
+    <mat-grid-tile class="day-events" [colspan]="3" *ngIf="calendarEvents"
         [ngClass]="mobileQuery.matches ? 'grid-tile' : 'grid-tile-desktop' ">
-        <mat-calendar *ngIf="!spinner" [dateClass]="dateClass" [selected]="selectedDate"
-            (selectedChange)="getSelectedDate($event)"></mat-calendar>
+        <app-day-events *ngIf="!mobileQuery.matches" [desktopSelectedDate]="selectedDate"></app-day-events>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" *ngIf="calendarEvents" [ngClass]="mobileQuery.matches ? 'grid-tile' : 'grid-tile-desktop' ">
-        <app-day-events *ngIf="selectedDate" [desktopSelectedDate]="selectedDate"></app-day-events>
-        <mat-list *ngIf="!selectedDate">
-            <mat-divider></mat-divider>
-            <mat-list-item *ngFor="let event of calendarEvents">
-                <h4 mat-line>{{event.subject}}</h4>
-                <p mat-line> {{event.location.uniqueId}}</p>
-                <h3 class="mat-18">{{event.start.dateTime | date}}</h3>
-                <mat-divider></mat-divider>
-            </mat-list-item>
-        </mat-list>
+    <mat-grid-tile *ngIf="!hideCalendar" [colspan]="4"
+        [ngClass]="mobileQuery.matches ? 'grid-tile' : 'grid-tile-desktop' ">
+        <mat-calendar *ngIf="!spinner" [ngClass]="mobileQuery.matches ? '' : 'calendar-picker' "  [dateClass]="dateClass" [selected]="selectedDate"
+            (selectedChange)="getSelectedDate($event)"></mat-calendar>
     </mat-grid-tile>
 </mat-grid-list>
 
