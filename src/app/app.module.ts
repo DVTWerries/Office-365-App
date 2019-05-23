@@ -43,6 +43,8 @@ import { DayEventsComponent } from './components/day-events/day-events.component
 import { DatePipe } from '@angular/common';
 import { FormDailogComponent } from './components/form-dailog/form-dailog.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,8 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
     HttpClientModule,
     ScrollingModule,
     MaterialModule,
-    OAuthModule.forRoot()
+    OAuthModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [
     LoginComponent,

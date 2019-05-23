@@ -1,4 +1,4 @@
-<mat-spinner *ngIf="spinner" class="spinner"></mat-spinner>
+<mat-spinner *ngIf="!selectedDate" class="spinner"></mat-spinner>
 
 <div *ngIf="selectedDate">
     <fa-icon *ngIf="mobileQuery.matches" [icon]="['fas','angle-left']"></fa-icon>
@@ -14,9 +14,3 @@
             (selectedChange)="getSelectedDate($event)"></mat-calendar>
     </mat-grid-tile>
 </mat-grid-list>
-
-<div *ngIf="calendarEvents && calendarEvents.length <= 0">
-    <div class="notification is-warning">
-        {{"You have no scheduled events yet."}}
-    </div>
-</div>
