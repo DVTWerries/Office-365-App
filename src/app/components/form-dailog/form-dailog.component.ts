@@ -19,10 +19,15 @@ export class FormDailogComponent {
   removable = true;
   addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl = new FormControl();
-  filteredFruits: Observable<string[]>;
-  fruits: string[] = ['Lemon'];
-  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  attendeesCtrl = new FormControl();
+  filteredAttendees: Observable<any[]>;
+  attendees: any[] = [{
+    type: 'optional',
+    emailAddress: {
+      address: 'AKock@jhb.dvt.co.za'
+    }
+  }];
+  allAttendees: any[];
 
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -30,10 +35,12 @@ export class FormDailogComponent {
   constructor(
     public dialogRef: MatDialogRef<FormDailogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Event) {
-      this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+      this.filteredAttendees = this.attendeesCtrl.valueChanges.pipe(
         startWith(null),
-        map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+        map((attender: string | null) => attender ? this._filter(attender) : this.data.attendees.slice()));
+      this.allAttendees = data.attendees;
     }
+    
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -48,7 +55,12 @@ export class FormDailogComponent {
 
       // Add our fruit
       if ((value || '').trim()) {
-        this.fruits.push(value.trim());
+        this.attendees.push({
+          type: 'optional',
+          emailAddress: {
+            address: value.trim()
+          }
+        });
       }
 
       // Reset the input value
@@ -56,28 +68,33 @@ export class FormDailogComponent {
         input.value = '';
       }
 
-      this.fruitCtrl.setValue(null);
+      this.attendeesCtrl.setValue(null);
     }
   }
 
   remove(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
-
+    const index = this.attendees.indexOf(fruit);
+    
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.attendees.splice(index, 1);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
+    this.attendees.push({
+      type: 'optional',
+      emailAddress: {
+        address: event.option.viewValue
+      }
+    });
     this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
+    this.attendeesCtrl.setValue(null);
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+    return this.allAttendees.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

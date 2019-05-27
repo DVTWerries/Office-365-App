@@ -62,10 +62,10 @@ export class CalendarEventsComponent implements OnInit, OnDestroy {
   }
 
   getSelectedDate(event) {
-    this.selectedDate = new Date(event).toString();
+    this.selectedDate = new Date(event);
     this.checkForMobile();
     if (this.mobileQuery.matches) {
-      this.router.navigate(['/calendar-events', this.selectedDate ]);
+      this.router.navigate(['/calendar-events', this.selectedDate.toString()]);
     }
   }
 }
