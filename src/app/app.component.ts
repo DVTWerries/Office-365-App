@@ -5,16 +5,17 @@ import { JwksValidationHandler } from 'angular-oauth2-oidc';
 import { authConfig } from './auth-config';
 import openIdConfig from '../openid-config.json';
 import openIdConfigKeys from '../openid-config.keys.json';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'OfficeApp';
 
-  constructor(private oauthService: OAuthService) {
+  constructor(private oauthService: OAuthService, private swUpdate: SwUpdate) {
     const config = openIdConfig as any;
 
     Object.assign(authConfig, {
@@ -34,15 +35,15 @@ export class AppComponent {
     this.oauthService.tryLogin();
   }
 
-  // public get name() {
-  //   const claims = this.oauthService.getIdentityClaims();
-
-  //   if (!claims) {
-  //     return null;
-  //   }
-
-  //   return (claims as any).name;
-  // }
+  ngOnInit()  {
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.available.subscribe(() => {
+        if (confirm('New version available. Load New Version?')) {
+          window.location.reload();
+        }
+      });
+    }
+  }
 }
 
 
