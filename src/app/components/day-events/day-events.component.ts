@@ -18,22 +18,44 @@ import { FormDailogComponent } from '../form-dailog/form-dailog.component';
 export class DayEventsComponent implements OnInit, OnDestroy, OnChanges {
 
   eventSource = new BehaviorSubject<string>('');
-  selectedDateSource = new BehaviorSubject<string>('');
   events: Event;
   mobileSelectedDate: any;
   mobileQuery: MediaQueryList;
   noEvent: boolean;
   event: Event;
+  currentSelectedDate: Date;
+  startDateTime: string;
 
   constructor(public dialog: MatDialog,
-              private router: ActivatedRoute,
-              private calendarEventService: CalendarEventsService,
-              changeDetectorRef: ChangeDetectorRef,
-              media: MediaMatcher) {
+    private router: ActivatedRoute,
+    private calendarEventService: CalendarEventsService,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 1024px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this.mobileQueryListener);
     this.noEvent = true;
+    this.event = {
+      id: '',
+      subject: '',
+      start: {
+        dateTime: '',
+        timeZone: 'UTC'
+      },
+      end: {
+        dateTime: '',
+        timeZone: 'UTC'
+      },
+      location: {
+        uniqueId: '',
+      },
+      attendees: [
+        {
+          type: 'optional',
+          emailAddress: { address: 'AKock@jhb.dvt.co.za' }
+        }
+      ]
+    }
   }
 
   @Input() desktopSelectedDate: any;
@@ -41,10 +63,10 @@ export class DayEventsComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit() {
     if (this.desktopSelectedDate) {
       this.getEvent(this.desktopSelectedDate)
-      .subscribe(event => {
-        this.events = event;
-        this.checkLoadedEvents();
-      });
+        .subscribe(event => {
+          this.events = event;
+          this.checkLoadedEvents();
+        });
     } else {
       this.router.params
         .subscribe(params => {
@@ -85,21 +107,47 @@ export class DayEventsComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   getEvent(selectedDate: any) {
-    const date = new Date(selectedDate);
-    const startTime = date.toISOString();
-    return this.calendarEventService.getEvent(startTime);
+    this.currentSelectedDate = new Date(selectedDate);
+    return this.calendarEventService
+      .getEvent(
+        this.currentSelectedDate.toISOString()
+      );
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(FormDailogComponent, {
       width: '500px',
-      data: this.event
+      data: {
+        startDateTime: this.currentSelectedDate.getHours().toString() + ':' + this.currentSelectedDate.getMinutes().toString(),
+        attendees: this.event.attendees
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.event = result;
+      console.log(result);
+      this.event = {
+        id: '',
+        subject: result.subject,
+        start: {
+          dateTime: this.currentSelectedDate.setTime(result.startDateTime).toString(),
+          timeZone: 'UTC'
+        },
+        end: {
+          dateTime: this.currentSelectedDate.setTime(result.endDateTime).toString(),
+          timeZone: 'UTC'
+        },
+        location: {
+          uniqueId: '',
+        },
+        attendees: [
+          {
+            type: 'optional',
+            emailAddress: { address: 'AKock@jhb.dvt.co.za' }
+          }
+        ]
+      }
       console.log(this.event);
+      //this.calendarEventService.createEvent(result);
       //this.events = result;
     });
   }
